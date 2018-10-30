@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<!--XML-представление объекта Drawable, используемого
+       для создания рамок компонентов TextView-->
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
        android:shape="rectangle">
    <corners android:radius="5dp"/>
