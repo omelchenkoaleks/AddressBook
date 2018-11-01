@@ -9,7 +9,16 @@ import android.os.Bundle;
  * для реактции на выбор контакта, добавление нового, обновление или удаление существующего
  * контакта.
  */
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements
+        ContactsFragment.ContactsFragmentListener,
+        DetailFragment.DetailFragmentListener,
+        AddEditFragment.AddEditFragmentListener{
+
+    // Ключ для сохранения Uri контакта в переданном объекте Bundle.
+    public static final String CONTACT_URI = "contact_uri";
+
+    // В эту переменную будем выводить список контактов.
+    private ContactsFragment contactsFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
