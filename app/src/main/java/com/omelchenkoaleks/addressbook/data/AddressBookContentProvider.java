@@ -62,13 +62,12 @@ public class AddressBookContentProvider extends ContentProvider {
     }
 
     // Получение информации из базы данных.
-    @androidx.annotation.Nullable
     @Override
-    public Cursor query(@androidx.annotation.NonNull Uri uri,
-                        @androidx.annotation.Nullable String[] projection,
-                        @androidx.annotation.Nullable String selection,
-                        @androidx.annotation.Nullable String[] selectionArgs,
-                        @androidx.annotation.Nullable String sortOrder) {
+    public Cursor query(Uri uri,
+                        String[] projection,
+                        String selection,
+                        String[] selectionArgs,
+                        String sortOrder) {
 
         // Создаем SQLiteQueryBuilder для запроса к таблице contacts.
         SQLiteQueryBuilder queryBuilder = new SQLiteQueryBuilder();
@@ -98,17 +97,15 @@ public class AddressBookContentProvider extends ContentProvider {
         return cursor;
     }
 
-    @androidx.annotation.Nullable
     @Override
-    public String getType(@androidx.annotation.NonNull Uri uri) {
+    public String getType(Uri uri) {
         return null;
     }
 
     // Вставляем новый контакт в базу данных.
-    @androidx.annotation.Nullable
     @Override
-    public Uri insert(@androidx.annotation.NonNull Uri uri,
-                      @androidx.annotation.Nullable ContentValues values) {
+    public Uri insert(Uri uri,
+                      ContentValues values) {
 
         Uri newContactUri = null;
 
@@ -139,9 +136,9 @@ public class AddressBookContentProvider extends ContentProvider {
 
     // Метод для удаления контакта из базы данных.
     @Override
-    public int delete(@androidx.annotation.NonNull Uri uri,
-                      @androidx.annotation.Nullable String selection,
-                      @androidx.annotation.Nullable String[] selectionArgs) {
+    public int delete(Uri uri,
+                      String selection,
+                      String[] selectionArgs) {
 
         int numberOfRowsDeleted;
 
@@ -171,10 +168,10 @@ public class AddressBookContentProvider extends ContentProvider {
 
     // Метод обновляет существующую запись.
     @Override
-    public int update(@androidx.annotation.NonNull Uri uri,
-                      @androidx.annotation.Nullable ContentValues values,
-                      @androidx.annotation.Nullable String selection,
-                      @androidx.annotation.Nullable String[] selectionArgs) {
+    public int update(Uri uri,
+                      ContentValues values,
+                      String selection,
+                      String[] selectionArgs) {
 
         // 1 - если обновление успешно, 2 - при неудаче.
         int numberOfRowsUpdated;

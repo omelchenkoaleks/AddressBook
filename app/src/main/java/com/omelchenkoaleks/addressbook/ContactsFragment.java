@@ -42,7 +42,7 @@ public class ContactsFragment extends Fragment
     private ContactsAdapter contactsAdapter;
 
     // Метод обратного вызова, реализуемый MainActivity.
-    public interface ContactsFragment {
+    public interface ContactsFragmentListener {
 
         // Вызывается при выборе контакта.
         void onContactSelected(Uri contactUri);
@@ -70,14 +70,14 @@ public class ContactsFragment extends Fragment
                 new LinearLayoutManager(getActivity().getBaseContext()));
 
         // Создаем адаптер recyclerView и слушателя щелчков на элементах.
-        contactsAdapter = new ContactsAdapter(
-                new ContactsAdapter.ContactClickListener() {
-                    @Override
-                    public void onClick(Uri contactUri) {
-                        listener.onContactSelected(contactUri);
-                    }
-                }
-        );
+        contactsAdapter = new ContactsAdapter(new ContactsAdapter.ContactClickListener() {
+            @Override
+            public void onClick(Uri contactUri) {
+                listener.onContactSelected(contactUri);
+            }
+        });
+
+
         // Назначаем адаптер.
         recyclerView.setAdapter(contactsAdapter);
 
