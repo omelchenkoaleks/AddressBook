@@ -117,4 +117,42 @@ public class MainActivity extends AppCompatActivity implements
         // Отображаем.
         transaction.commit();
     }
+
+    // Возвращение к списку контактов при удалении текущего контакта.
+    @Override
+    public void onContactDeleted() {
+        // Удаление с вершины стека.
+        getSupportFragmentManager().popBackStack();
+        // Обновление контактов.
+        contactsFragment.updateContactList();
+    }
+
+    // Отображение AddEditFragment для изменения существующего контакта.
+    @Override
+    public void onEditContact(Uri contactUri) {
+        if (findViewById(R.id.fragmentContainer) != null)
+            // Телефон.
+            displayAddEditFragment(R.id.fragmentContainer, contactUri);
+        else
+            // Планшет.
+            displayAddEditFragment(R.id.rightPaneContainer, contactUri);
+    }
+
+    // Обновление GUI после сохранения нового или существующего контакта.
+    @Override
+    public void onAddEditCompleted(Uri contactUri) {
+        // Удаление с вершины стека.
+        getSupportFragmentManager().popBackStack();
+        // Обновление контакта.
+        contactsFragment.updateContactList();
+
+        if (findViewById(R.id.fragmentContainer) == null) {
+            // Пленшет.
+            // Удаление с вершины стека.
+            getSupportFragmentManager().popBackStack();
+
+            // На планшете выводится добавленный или измененный контакт.
+            displayContact(contactUri, R.id.rightPaneContainer);
+        }
+    }
 }
